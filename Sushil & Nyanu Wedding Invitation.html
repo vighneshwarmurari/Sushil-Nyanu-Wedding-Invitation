@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation – Sushil & Gyaneshwari</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght=0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght=0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#b89047;--gold-light:#e2c98a;--emerald:#064227;--text-dark:#1c3321;--cream-bg:#f6eedb;--crimson:#801823}
+body{background:#0a1710;display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:'Cormorant Garamond',serif;overflow-x:hidden;padding:40px 0}
+
+/* Royal Framed Container */
+.card{position:relative;width:480px;background:var(--cream-bg);border-radius:30px;overflow:hidden;box-shadow:0 15px 50px rgba(0,0,0,0.5);border: 12px solid var(--emerald);outline: 2px solid var(--gold);outline-offset: -8px;display:flex;flex-direction:column;}
+.card-corners {position:absolute;inset:4px;border:1px solid rgba(184,144,71,0.4);border-radius:16px;pointer-events:none;z-index:11}
+
+/* GLOBAL BACKGROUND LAYERS */
+.global-bg-canvas {position:absolute;inset:0;pointer-events:none;z-index:1;}
+
+/* Continuous Geometric Lattice Work */
+.bg-lattice {position:absolute;inset:40px 20px;background-image: radial-gradient(var(--gold) 0.75px, transparent 0.75px), radial-gradient(var(--gold) 0.75px, transparent 0.75px);background-size: 24px 24px;background-position: 0 0, 12px 12px;opacity:0.05;z-index:1;}
+
+/* Full-Length Flower Vine Pillars */
+.bg-pillar-extended {position:absolute;top:40px;bottom:40px;width:35px;opacity:0.12;z-index:2;display:flex;flex-direction:column;justify-content:space-between;align-items:center;}
+.pillar-ext-left {left:15px;border-right:1px dashed var(--gold);}
+.pillar-ext-right {right:15px;border-left:1px dashed var(--gold);}
+.vine-motif {width:16px;height:16px;fill:var(--gold);margin:10px 0;}
+
+/* Main Illustration Window Frame */
+.arch-scene{position:relative;width:100%;height:500px;z-index:3;overflow:hidden;background:transparent;}
+.traditional-frame {position:absolute;inset:0;background: linear-gradient(180deg, rgba(6,66,39,0.08) 0%, transparent 100%);pointer-events:none;z-index:2}
+
+/* SECURE TOP FIXED LAYER - Prevents displacement elements from pushing items down */
+.top-decorations-container {position:absolute;top:0;left:0;width:100%;height:150px;z-index:9;pointer-events:none;}
+
+/* Om Text */
+.om-text-wrap {position:absolute;top:32px;left:50%;transform:translateX(-50%);font-family:'Playfair Display', serif;font-size:32px;font-weight:400;color:var(--gold);opacity:0.9;text-align:center;width:100%;letter-spacing:normal;}
+
+/* Corner Banana Leaves */
+.banana-leaf {position:absolute;top:0;width:160px;height:120px;background:var(--emerald);opacity:0.15;filter:blur(1px);}
+.leaf-left {left:-30px;border-radius:0 0 100% 0;transform:rotate(-15deg)}
+.leaf-right {right:-30px;border-radius:0 0 0 100%;transform:rotate(15deg)}
+
+/* Hanging Marigold Garlands */
+.garland {position:absolute;top:0;display:flex;flex-direction:column;gap:5px;}
+.garland-left {left:35px}
+.garland-right {right:35px}
+.flower {width:8px;height:8px;background:#f39c12;border-radius:50%;box-shadow:0 0 4px #e67e22}
+.flower:nth-child(even) {background:#e67e22}
+.lotus-bud {width:10px;height:14px;background:#ff758f;border-radius:50% 50% 0 0;margin-top:4px;box-shadow:0 2px 4px rgba(0,0,0,0.1)}
+
+/* Hanging Bells */
+.hanging-bell{position:absolute;top:-5px;animation:bellSway ease-in-out infinite alternate;transform-origin:top center}
+.bell-left {left:75px;animation-duration:3.5s;}
+.bell-right {right:75px;animation-duration:4s;}
+@keyframes bellSway{from{transform:rotate(-2.5deg)}to{transform:rotate(2.5deg)}}
+
+/* Decorative Classical Mandalas */
+.bg-mandala {position:absolute;bottom:20px;width:90px;height:90px;opacity:0.2;z-index:3;fill:var(--gold);}
+.mandala-left {left:32px;}
+.mandala-right {right:32px;}
+
+/* RE-ENHANCED & LARGER BACKDROP CIRCLE DESIGN FOR TRANSPARENT PIC */
+.royal-arch-backdrop {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 350px; /* Expanded sizing to fit larger pic */
+  height: 400px;
+  background: rgba(184, 144, 71, 0.03);
+  border: 2px dashed rgba(184, 144, 71, 0.35);
+  border-bottom: none;
+  border-radius: 175px 175px 0 0;
+  z-index: 4;
+}
+.couple-aura {
+  position:absolute;
+  bottom:0px;
+  left:50%;
+  transform:translateX(-50%);
+  width:420px; /* Enlarged glow */
+  height:420px;
+  background:radial-gradient(circle, rgba(184,144,71,0.25) 0%, rgba(246,238,219,0) 70%);
+  z-index:4;
+  pointer-events:none;
+}
+
+/* Couple Frame - Substantially maximized and centered perfectly */
+.couple-wrap{position:absolute;bottom:0px;left:50%;transform:translateX(-50%);width:370px;height:430px;z-index:5;animation:coupleReveal 1.2s ease-out both}
+@keyframes coupleReveal{from{opacity:0;transform:translateX(-50%) translateY(15px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.couple-wrap img{width:100%;height:100%;object-fit:contain;object-position:bottom center;filter:drop-shadow(0 10px 25px rgba(0,0,0,0.18))}
+
+/* Decorative Base Border strip at picture floor boundary */
+.photo-base-garland {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 16px;
+  z-index: 6;
+  background-image: radial-gradient(circle, #f39c12 4px, transparent 5px), radial-gradient(circle, #e67e22 4px, transparent 5px);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 0;
+  background-repeat: repeat-x;
+  opacity: 0.9;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.12));
+}
+
+/* Content Zone */
+.content{position:relative;z-index:4;padding:20px 36px 40px;text-align:center;background:transparent;}
+
+/* Typography */
+.invite-tag {font-family:'Cinzel', serif;font-size:11px;letter-spacing:3px;color:var(--text-dark);text-transform:uppercase;margin-bottom:4px;font-weight:600;opacity:0.9}
+.main-title {font-family:'Cinzel', serif;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:15px;text-transform:uppercase}
+
+.names-block{animation:fadeUp 1s ease-out both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+
+.name-groom, .name-bride{font-family:'Playfair Display', serif;font-size:25px;font-weight:600;color:var(--emerald);line-height:1.3;letter-spacing:0.5px}
+.amp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--gold);display:block;margin:2px 0}
+
+.sub-divider {width:60px;height:1px;background:var(--gold);margin:12px auto}
+
+/* Countdown Blocks */
+.countdown-wrap{animation:fadeUp 1s ease-out 0.2s both;margin:15px 0 25px}
+.countdown-title{font-family:'Cinzel', serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--crimson);margin-bottom:12px;font-weight:700}
+.countdown-boxes{display:flex;gap:8px;justify-content:center}
+.cd-box{background:rgba(255,255,255,0.75);border:1px solid rgba(184,144,71,0.35);border-radius:10px;padding:8px 4px;min-width:68px;box-shadow: 0 4px 10px rgba(0,0,0,0.03);backdrop-filter:blur(2px);}
+.cd-num{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--crimson);line-height:1;display:block}
+.cd-label{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dark);margin-top:4px;display:block;font-weight:600;opacity:0.7}
+
+/* Events Cards */
+.events{display:flex;gap:12px;justify-content:space-between;animation:fadeUp 1s ease-out 0.4s both;margin-top:5px}
+.event-card{flex:1;background:rgba(255,255,255,0.8);border:1px solid #e6dcc3;border-radius:18px;padding:20px 6px;text-align:center;position:relative;box-shadow:0 6px 15px rgba(0,0,0,0.03);display:flex;flex-direction:column;align-items:center;backdrop-filter:blur(2px);}
+.event-card::before {content:'';position:absolute;inset:4px;border:1px solid rgba(184,144,71,0.25);border-radius:14px;pointer-events:none}
+
+.event-name{font-family:'Cinzel',serif;font-size:11.5px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:12px;padding-bottom:6px;width:85%;text-align:center}
+.name-crimson {color:var(--crimson);border-bottom:1px solid rgba(128,24,35,0.2);}
+
+.event-date{font-family:'Playfair Display',serif;font-size:14px;color:var(--text-dark);font-weight:700;margin-bottom:2px}
+.event-day{font-family:'Cinzel',serif;font-size:9px;color:var(--gold);letter-spacing:1.5px;font-weight:700;text-transform:uppercase;margin-bottom:12px}
+.event-venue{font-size:10px;color:var(--text-dark);line-height:1.5;font-weight:600;opacity:0.85;max-width:195px;word-wrap:break-word}
+
+/* Top Floating Widget Bar */
+.datetime-bar{position:relative;z-index:20;background:rgba(246,238,219,0.92);backdrop-filter:blur(4px);padding:8px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(184,144,71,0.3)}
+.dt-label{font-size:9px;color:var(--emerald);letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+.dt-value{font-family:'Playfair Display',serif;font-size:11px;color:var(--crimson);font-weight:600}
+
+.footer{margin-top:25px;animation:fadeUp 1s ease-out 0.5s both}
+.footer-text{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;color:var(--text-dark);line-height:1.5;max-width:320px;margin:0 auto;opacity:0.9}
+
+.petal{position:absolute;width:6px;height:9px;border-radius:50% 0 50% 0;opacity:0;animation:petalFall linear infinite;z-index:6}
+@keyframes petalFall{0%{opacity:0;transform:translateY(-20px) rotate(0deg)}10%{opacity:0.6}90%{opacity:0.4}100%{opacity:0;transform:translateY(540px) rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+  <div class="card-corners"></div>
+
+  <div class="datetime-bar">
+    <div><div class="dt-label">Live Date</div><div class="dt-value" id="dtDate">—</div></div>
+    <div style="color:var(--gold);font-size:14px;">✦</div>
+    <div style="text-align:right"><div class="dt-label">Live Time</div><div class="dt-value" id="dtTime">—</div></div>
+  </div>
+
+  <div class="global-bg-canvas">
+    <div class="bg-lattice"></div>
+
+    <div class="bg-pillar-extended pillar-ext-left">
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+    </div>
+
+    <div class="bg-pillar-extended pillar-ext-right">
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+      <svg class="vine-motif" viewBox="0 0 24 24"><path d="M12 2C11 4 8 6 8 9c0 2.5 2 4.5 4 6 2-1.5 4-3.5 4-6 0-3-3-5-4-7z"/></svg>
+    </div>
+  </div>
+
+  <div class="arch-scene">
+    <div class="traditional-frame"></div>
+    <div id="petals"></div>
+     
+    <div class="top-decorations-container">
+      <div class="om-text-wrap">ॐ</div>
+
+      <div class="banana-leaf leaf-left"></div>
+      <div class="banana-leaf leaf-right"></div>
+       
+      <div class="garland garland-left">
+        <div class="flower"></div><div class="flower"></div><div class="flower"></div><div class="flower"></div><div class="lotus-bud"></div>
+      </div>
+      <div class="garland garland-right">
+        <div class="flower"></div><div class="flower"></div><div class="flower"></div><div class="flower"></div><div class="lotus-bud"></div>
+      </div>
+
+      <svg class="hanging-bell bell-left" width="30" height="90" viewBox="0 0 30 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="15" y1="0" x2="15" y2="65" stroke="#b89047" stroke-width="1.2"/>
+        <path d="M7 65 L23 65 L20 72 L10 72 Z" fill="#b89047"/>
+        <path d="M6 72 Q6 85 15 85 Q24 85 24 72 Z" fill="#e2c98a" stroke="#b89047" stroke-width="1"/>
+        <circle cx="15" cy="88" r="2" fill="#b89047"/>
+      </svg>
+       
+      <svg class="hanging-bell bell-right" width="30" height="90" viewBox="0 0 30 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="15" y1="0" x2="15" y2="65" stroke="#b89047" stroke-width="1.2"/>
+        <path d="M7 65 L23 65 L20 72 L10 72 Z" fill="#b89047"/>
+        <path d="M6 72 Q6 85 15 85 Q24 85 24 72 Z" fill="#e2c98a" stroke="#b89047" stroke-width="1"/>
+        <circle cx="15" cy="88" r="2" fill="#b89047"/>
+      </svg>
+    </div>
+
+    <svg class="bg-mandala mandala-left" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="40" fill="none" stroke="var(--gold)" stroke-width="0.5" stroke-dasharray="2,2"/>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="var(--gold)" stroke-width="1"/>
+      <path d="M50 10 Q47 25 50 40 Q53 25 50 10 Z M50 90 Q47 75 50 60 Q53 75 50 90 Z M10 50 Q25 47 40 50 Q25 53 10 50 Z M90 50 Q75 47 60 50 Q75 53 90 50 Z" />
+      <path d="M22 22 Q35 35 43 43 M78 78 Q65 65 57 57 M22 78 Q35 65 43 57 M78 22 Q65 35 57 43" stroke="var(--gold)" stroke-width="0.75"/>
+      <circle cx="50" cy="50" r="8" fill="none" stroke="var(--gold)" stroke-width="1"/>
+    </svg>
+
+    <svg class="bg-mandala mandala-right" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="40" fill="none" stroke="var(--gold)" stroke-width="0.5" stroke-dasharray="2,2"/>
+      <circle cx="50" cy="50" r="30" fill="none" stroke="var(--gold)" stroke-width="1"/>
+      <path d="M50 10 Q47 25 50 40 Q53 25 50 10 Z M50 90 Q47 75 50 60 Q53 75 50 90 Z M10 50 Q25 47 40 50 Q25 53 10 50 Z M90 50 Q75 47 60 50 Q75 53 90 50 Z" />
+      <path d="M22 22 Q35 35 43 43 M78 78 Q65 65 57 57 M22 78 Q35 65 43 57 M78 22 Q65 35 57 43" stroke="var(--gold)" stroke-width="0.75"/>
+      <circle cx="50" cy="50" r="8" fill="none" stroke="var(--gold)" stroke-width="1"/>
+    </svg>
+     
+    <div class="royal-arch-backdrop"></div>
+    <div class="couple-aura"></div>
+
+    <div class="couple-wrap">
+      <img src="https://lh3.googleusercontent.com/d/16wiTWMV-mfbWkd132-v6RwmRzd5mNPHL" alt="Sushil & Gyaneshwari">
+    </div>
+
+    <div class="photo-base-garland"></div>
+  </div>
+
+  <div class="content">
+    <div class="names-block">
+      <p class="invite-tag">You are invited to</p>
+      <h3 class="main-title">The Wedding Of</h3>
+      <h1 class="name-groom">Sushil Ashok Kalastri</h1>
+      <span class="amp">&</span>
+      <h1 class="name-bride">Gyaneshwari Srinivas Murari</h1>
+    </div>
+
+    <div class="sub-divider"></div>
+
+    <div class="countdown-wrap">
+      <div class="countdown-title">Countdown to our big day</div>
+      <div class="countdown-boxes">
+        <div class="cd-box"><span class="cd-num" id="days">00</span><span class="cd-label">Days</span></div>
+        <div class="cd-box"><span class="cd-num" id="hours">00</span><span class="cd-label">Hours</span></div>
+        <div class="cd-box"><span class="cd-num" id="minutes">00</span><span class="cd-label">Mins</span></div>
+        <div class="cd-box"><span class="cd-num" id="seconds">00</span><span class="cd-label">Secs</span></div>
+      </div>
+    </div>
+
+    <div class="events">
+      <div class="event-card">
+        <h3 class="event-name name-crimson">Getti Vido</h3>
+        <p class="event-date">24 June 2026</p>
+        <p class="event-day">Thursday</p>
+        <p class="event-venue">Padmavati Hall, Balaji Mandir,<br>Cheeta Camp, Trombay, <br>Mumbai - 400088</p>
+      </div>
+
+      <div class="event-card">
+        <h3 class="event-name name-crimson">Wedding Ceremony</h3>
+        <p class="event-date">25 June 2026</p>
+        <p class="event-day">Friday</p>
+        <p class="event-venue">Padmavati Hall, Balaji Mandir,<br>Cheeta Camp, Trombay, <br>Mumbai - 400088</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p class="footer-text">We look forward to celebrating this joyous occasion with you and your family.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+var weddingDate = new Date('June 25, 2026 00:00:00').getTime();
+
+function updateLiveDateTime() {
+  var now = new Date();
+  var options = { weekday: 'short', day: '2-digit', month: 'short' };
+  document.getElementById('dtDate').innerText = now.toLocaleDateString('en-US', options);
+   
+  var timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+  document.getElementById('dtTime').innerText = now.toLocaleTimeString('en-US', timeOptions);
+}
+setInterval(updateLiveDateTime, 1000);
+updateLiveDateTime();
+
+function updateCountdown() {
+  var now = new Date().getTime();
+  var diff = weddingDate - now;
+
+  if (diff <= 0) {
+    document.getElementById('days').innerText = '00';
+    document.getElementById('hours').innerText = '00';
+    document.getElementById('minutes').innerText = '00';
+    document.getElementById('seconds').innerText = '00';
+    return;
+  }
+
+  var d = Math.floor(diff / (1000 * 60 * 60 * 24));
+  var h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  var s = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById('days').innerText = d < 10 ? '0' + d : d;
+  document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
+  document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
+  document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+var pd = document.getElementById('petals');
+var pc = ['#f7a8c8', '#fca3b7', '#fff0f3', '#ffccd5'];
+for (var j = 0; j < 15; j++) {
+  var p = document.createElement('div');
+  p.className = 'petal';
+  p.style.cssText = 'left:' + (Math.random() * 100) + '%;background:' + pc[Math.floor(Math.random() * pc.length)] + ';animation-duration:' + (Math.random() * 5 + 5) + 's;animation-delay:' + (Math.random() * 6) + 's;';
+  pd.appendChild(p);
+}
+</script>
+</body>
+</html>
